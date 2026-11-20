@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" x-data="app()" :class="{'dark':dark}" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Eliott — Freelance UI/UX Designer and Frontend Developer. Fast, clean and accessible digital products.">
+<meta name="keywords" content="Pedro Stella, SinalFy, Ciência da Computação">
+<meta name="author" content="Pedro Stella">
+<meta property="og:title" content="Eliott — Freelance UI/UX Designer">
+<meta property="og:description" content="I design and build digital products that people love to use.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eliott.dev">
+<title>Pedro Stella | Sobre mim</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: { display: ['PT Sans','sans-serif'], body: ['DM Sans','sans-serif'] },
+      colors: { accent: '#FF6B2B', 'accent-light': '#FF8F5C' }
+    }
+  }
+}
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{font-family:'DM Sans',sans-serif}
+h1,h2,h3,h4,h5,h6{font-family:'PT Sans',sans-serif}
+body{transition:background-color .3s,color .3s}
+
+/* noise overlay */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")}
+
+/* scrollbar */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#FF6B2B;border-radius:99px}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* nav underline animation */
+.nl{position:relative}
+.nl::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:currentColor;transition:width .22s cubic-bezier(.4,0,.2,1)}
+.nl:hover::after,.nl.on::after{width:100%}
+.nl.on{font-weight:500}
+
+/* shimmer button */
+.shimmer{position:relative;overflow:hidden}
+.shimmer::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(255,255,255,.18);transform:skewX(-20deg);transition:left .4s cubic-bezier(.4,0,.2,1)}
+.shimmer:hover::after{left:160%}
+
+/* photo frames */
+.pf{overflow:hidden;background:#d4d4d8}
+.pf img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* card hover */
+.card-h{transition:transform .28s cubic-bezier(.4,0,.2,1),border-color .18s}
+.card-h:hover{transform:translateY(-4px)}
+
+/* skill tag */
+.stag{transition:border-color .18s}
+
+[x-cloak]{display:none!important}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+  max-width: 23rem;
+  margin-inline: auto;
+}
+@media (min-width: 640px) {
+  .story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 39rem; }
+}
+@media (min-width: 1100px) {
+  .story-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: none; }
+}
+.story-photo {
+  display: block;
+  width: 100%;
+  background: transparent;
+}
+.story-photo img { width: 100%; height: auto; display: block; }
+.story-grid > a { display: flex; flex-direction: column; }
+.story-caption { display: block; padding: 1rem 1.25rem 0; }
+@media (min-width: 640px) {
+  .story-caption { min-height: 9rem; }
+}
+#work .story-grid > a:focus-visible{outline:3px solid #ff6b2b;outline-offset:-4px}
+.story-link-label{display:block;margin:0 1.25rem 1.25rem;text-decoration:underline}
+.stack-filters:not([hidden]), .stack-list { display:flex; flex-wrap:wrap; gap:.65rem; }
+.stack-filters button { border:1px solid #8888; padding:.45rem 1rem; border-radius:2rem; }
+.stack-filters button[aria-pressed="true"] { background:#ff864e; border-color:#ff864e; color:#20120c; }
+.stack-filters button:focus-visible { outline:2px solid currentColor; outline-offset:3px; }
+.stack-list { padding:0; margin:1.5rem 0 0; list-style:none; }
+.stack-list li { border:1px solid #8885; border-left:3px solid #ff864e; border-radius:.5rem; padding:.8rem 1.25rem; font-weight:600; }
+.stack-list li[hidden] { display:none; }
+@media (prefers-reduced-motion:no-preference) {
+  .stack-list li { animation:stack-enter .2s ease-out; }
+  @keyframes stack-enter { from { opacity:0; transform:translateY(4px); } }
+}
+.timeline { list-style:none; padding:0; margin:0; }
+.timeline li { position:relative; margin-left:.35rem; padding:0 0 1.5rem 1.5rem; border-left:2px solid #ff864e70; }
+.timeline li:last-child { border-color:transparent; padding-bottom:0; }
+.timeline li::before { content:""; position:absolute; left:-6px; top:.45rem; width:10px; height:10px; border-radius:50%; background:#ff864e; }
+.timeline strong { font-size:.95rem; }
+.timeline p { margin:.3rem 0 0; max-width:58ch; line-height:1.6; }
+.timeline a { text-decoration:underline; text-decoration-color:#ff864e; text-underline-offset:.2em; }
+</style>
+</head>
+
+<body class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased">
+
+<!-- ═══ NAV ═══ -->
+<header class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+  :class="sc?'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md shadow-sm shadow-black/5':''">
+  <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+
+    <a href="#hero" class="font-display font-bold text-xl tracking-tight relative z-10">
+      <span class="text-zinc-900 dark:text-white">Pedro</span><span class="text-accent"> Stella</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-8 text-sm" role="list">
+
+      <li><a href="#work"     class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='work'?'on !text-zinc-900 dark:!text-white':''">Minha história</a></li>
+
+      <li><a href="#linha-do-tempo"    class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='linha-do-tempo'?'on !text-zinc-900 dark:!text-white':''">Linha do tempo</a></li>
+      <li><a href="#stack"    class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='stack'?'on !text-zinc-900 dark:!text-white':''">Minha stack</a></li>
+      <li><a href="#contact" class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='contact'?'on !text-zinc-900 dark:!text-white':''">Contato</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <!-- dark toggle -->
+      <button @click="dark=!dark" class="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors" :aria-label="dark?'Light mode':'Dark mode'">
+        <svg x-show="!dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg x-show="dark"  class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+      </button>
+      
+      
+      <!-- hamburger -->
+      <button @click="mm=!mm" class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800" :aria-expanded="mm" aria-label="Toggle menu">
+        <svg x-show="!mm" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg x-show="mm"  class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- mobile menu -->
+  <div x-show="mm" x-cloak
+    x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2"
+    class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900">
+    <ul class="flex flex-col px-6 py-5 gap-4 text-sm font-medium" role="list">
+
+      <li><a href="#work"     @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Minha história</a></li>
+
+      <li><a href="#linha-do-tempo"    @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Linha do tempo</a></li>
+      <li><a href="#stack"    @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Minha stack</a></li>
+      <li><a href="#contact" @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Contato</a></li>
+      <li class="pt-2 border-t border-zinc-100 dark:border-zinc-900">
+        
+      </li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero" class="relative flex items-center pt-16 overflow-hidden">
+  <div class="absolute top-1/4 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute bottom-1/4 left-0 w-64 h-64 bg-zinc-200/50 dark:bg-zinc-800/30 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 py-14 md:py-24 w-full">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+
+      <div>
+        <h1 class="reveal d1 font-display font-bold text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-zinc-900 dark:text-white mb-6">
+          Olá, eu sou<br><span class="text-accent">Pedro Stella</span>
+        </h1>
+        <p class="reveal d2 text-lg md:text-xl text-zinc-500 dark:text-zinc-400 font-light leading-relaxed max-w-md mb-10">
+          Aos seis anos, comecei a treinar karatê em Jundiaí. Anos depois, na escola, comecei a desenvolver o <strong class="font-medium text-zinc-700 dark:text-zinc-300">SinalFy</strong> com meu professor. Esse projeto me rendeu uma bolsa para estudar Ciência da Computação no UniAnchieta.
+        </p>
+        <div class="reveal d3 flex flex-wrap gap-4">
+          <a href="#work" class="shimmer inline-flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-medium px-7 py-3.5 rounded-full hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors text-sm">
+            Explorar minhas histórias
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+          <a href="#contact" class="inline-flex items-center gap-2 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 font-medium px-7 py-3.5 rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-sm">Entre em contato</a>
+        </div>
+      </div>
+
+      <div class="reveal d2 flex justify-center md:justify-end">
+        <div class="w-72 max-w-full md:w-80 lg:w-96">
+          <a href="minha-historia.html" aria-label="Ler a história de Pedro Stella" class="block w-full overflow-hidden rounded-3xl focus-visible:outline-accent"><img class="block w-full h-auto" width="510" height="482" src="imagens/perfil.png" alt="Foto de perfil de Pedro Stella" loading="eager"></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+
+
+<!-- ═══ WORK ═══ -->
+
+
+<!-- ═══ ABOUT ═══ -->
+<section id="work" class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14">
+      <div>
+        <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">Minha história</p>
+        <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white">Conheça mais sobre mim</h2>
+      </div>
+      
+    </div>
+
+    <div class="story-grid">
+
+      <a href="sinalfy.html" class="card-h reveal d2 group rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+        <span class="story-photo">
+          <img src="imagens/Sinalfy.png" alt="SinalFy" loading="lazy">
+        </span>
+        <span class="story-caption">
+          
+          <span class="block font-display font-bold text-xl text-zinc-900 dark:text-white mb-1.5">SinalFy</span>
+          <span class="block text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">O SinalFy começou na escola, a partir de uma ideia do meu professor Caio Zanin que desenvolvemos juntos.</span>
+          
+        </span>
+        <span class="story-link-label text-accent">Ver história →</span></a>
+      <a href="microsoft.html" class="card-h reveal d2 group rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+        <span class="story-photo">
+          <img src="imagens/Na%20microsoft.png" alt="Visita à Microsoft" loading="lazy">
+        </span>
+        <span class="story-caption">
+          
+          <span class="block font-display font-bold text-xl text-zinc-900 dark:text-white mb-1.5">Visita à Microsoft</span>
+          <span class="block text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">A convite do professor Elton Bordin, visitei o Microsoft Innovation Hub em São Paulo com colegas do UniAnchieta.</span>
+          
+        </span>
+        <span class="story-link-label text-accent">Ver história →</span></a>
+      <a href="futebol.html" class="card-h reveal d2 group rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+        <span class="story-photo">
+          <img src="imagens/Jogando%20bola.png" alt="Futebol" loading="lazy">
+        </span>
+        <span class="story-caption">
+          
+          <span class="block font-display font-bold text-xl text-zinc-900 dark:text-white mb-1.5">Futebol</span>
+          <span class="block text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">Comecei a jogar aos sete anos, fiz uma pausa para o karatê e voltei aos campos em 2022. Hoje jogo em Jundiaí.</span>
+          
+        </span>
+        <span class="story-link-label text-accent">Ver história →</span></a>
+      <a href="karate.html" class="card-h reveal d2 group rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+        <span class="story-photo">
+          <img src="imagens/Lutando%20Karate.png" alt="Karatê" loading="lazy">
+        </span>
+        <span class="story-caption">
+          
+          <span class="block font-display font-bold text-xl text-zinc-900 dark:text-white mb-1.5">Karatê</span>
+          <span class="block text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">Comecei no Clube São João aos seis anos. No karatê, fui campeão brasileiro, tricampeão paulista e cheguei à seleção brasileira.</span>
+          
+        </span>
+        <span class="story-link-label text-accent">Ver história →</span></a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+
+
+<!-- ═══ BLOG ═══ -->
+<section id="linha-do-tempo" aria-labelledby="titulo-tempo" class="py-20 scroll-mt-16">
+  <div class="max-w-6xl mx-auto px-6 md:grid md:grid-cols-3 md:gap-12">
+    <h2 id="titulo-tempo" class="font-display font-bold text-4xl md:text-5xl mb-10">Linha do tempo</h2>
+    <ol class="timeline md:col-span-2">
+      <li><strong>Aos 6 anos</strong><p>Comecei a treinar karatê no Clube São João, em Jundiaí.</p></li>
+      <li><strong>Aos 7 anos</strong><p>Comecei a jogar futebol. Por um tempo, os campos e o tatame fizeram parte da minha rotina.</p></li>
+      <li><strong>2020</strong><p>Aos 12 anos, entrei para a <a href="karate.html">seleção brasileira de karatê</a>. Ia representar o Brasil na Bolívia, mas a pandemia cancelou o Sul-Americano.</p></li>
+      <li><strong>2021</strong><p>Encerrei meus treinos de karatê na faixa marrom, depois de conquistar o título brasileiro e três títulos paulistas.</p></li>
+      <li><strong>2022</strong><p><a href="futebol.html">Voltei a jogar futebol</a>. Hoje jogo no amador aqui em Jundiaí.</p></li>
+      <li><strong>Na escola</strong><p>Meu professor Caio Zanin trouxe a ideia de um tradutor de Libras. Juntos, começamos a desenvolver o <a href="sinalfy.html">SinalFy</a>.</p></li>
+      <li><strong>2026</strong><p>O SinalFy me rendeu uma bolsa integral para cursar Ciência da Computação no UniAnchieta.</p></li>
+      <li><strong>Outubro de 2026</strong><p>A convite do professor Elton Bordin, <a href="microsoft.html">visitei o Microsoft Innovation Hub</a> em São Paulo com colegas da faculdade.</p></li>
+    </ol>
+  </div>
+</section>
+<section id="stack" class="py-24 bg-zinc-50 dark:bg-zinc-900/40">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Minha stack</h2>
+    <p class="text-zinc-600 dark:text-zinc-400 mb-8">Estas são as tecnologias que estudo e uso nos meus projetos.</p>
+    <div class="stack-filters" role="group" aria-label="Filtrar tecnologias por área" hidden>
+      <button type="button" data-filter="todas" aria-pressed="true">Todas</button>
+      <button type="button" data-filter="web" aria-pressed="false">Desenvolvimento web</button>
+      <button type="button" data-filter="programacao" aria-pressed="false">Programação</button>
+      <button type="button" data-filter="dados" aria-pressed="false">Bancos de dados</button>
+    </div>
+    <ul class="stack-list" aria-label="Tecnologias">
+        <li data-area="web">HTML</li>
+        <li data-area="web">CSS</li>
+        <li data-area="web">JavaScript</li>
+        <li data-area="web">TypeScript</li>
+        <li data-area="programacao">Java</li>
+        <li data-area="programacao">Python</li>
+        <li data-area="dados">MongoDB</li>
+        <li data-area="dados">PostgreSQL</li>
+    </ul>
+  </div>
+</section>
+<script>
+{
+  const filters = document.querySelector('.stack-filters');
+  const technologies = document.querySelectorAll('.stack-list li');
+  filters.hidden = false;
+  filters.addEventListener('click', event => {
+    const selected = event.target.closest('button');
+    if (!selected) return;
+    for (const button of filters.querySelectorAll('button')) {
+      button.setAttribute('aria-pressed', String(button === selected));
+    }
+    for (const item of technologies) {
+      item.hidden = selected.dataset.filter !== 'todas' && item.dataset.area !== selected.dataset.filter;
+    }
+  });
+}
+</script>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display font-bold text-4xl mb-5">Contato</h2>
+    <a href="https://www.instagram.com/pedrostella.tech/" class="nl text-accent">Instagram @pedrostella.tech</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="border-t border-zinc-100 dark:border-zinc-900">
+  <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-zinc-400">© <span id="yr"></span> Pedro Stella. All rights reserved. <br> Developed by <a href="https://lbegey78.gumroad.com/" target="_blank" class="font-bold">Laurent Begey</a> • Distributed by <a href="https://themewagon.com/" target="_blank" class="font-bold">ThemeWagon</a></p>
+    <p class="text-xs text-zinc-500">Built with
+      <a href="https://tailwindcss.com" rel="noopener noreferrer" target="_blank" class="hover:text-accent transition-colors">Tailwind CSS</a>
+      &amp;
+      <a href="https://alpinejs.dev" rel="noopener noreferrer" target="_blank" class="hover:text-accent transition-colors">Alpine.js</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+function app() {
+  return {
+    dark: false,
+    mm: false,
+    sc: false,
+    s: 'hero',
+
+    init() {
+      // dark mode
+      this.dark = localStorage.getItem('theme') === 'dark' ||
+        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      this.$watch('dark', v => localStorage.setItem('theme', v ? 'dark' : 'light'));
+
+      // scroll
+      window.addEventListener('scroll', () => {
+        this.sc = window.scrollY > 20;
+        this.updateSection();
+      }, { passive: true });
+
+      // reveal
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+      // year
+      document.getElementById('yr').textContent = new Date().getFullYear();
+    },
+
+    updateSection() {
+      const atBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 60;
+      if (atBottom) { this.s = 'contact'; return; }
+      const ids = ['contact','stack','linha-do-tempo','work','hero'];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 130) { this.s = id; return; }
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>
