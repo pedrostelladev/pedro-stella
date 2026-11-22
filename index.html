@@ -116,7 +116,28 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 .timeline li { position:relative; margin-left:.35rem; padding:0 0 1.5rem 1.5rem; border-left:2px solid #ff864e70; }
 .timeline li:last-child { border-color:transparent; padding-bottom:0; }
 .timeline li::before { content:""; position:absolute; left:-6px; top:.45rem; width:10px; height:10px; border-radius:50%; background:#ff864e; }
-.timeline strong { font-size:.95rem; }
+.timeline .badge {
+      --bs-badge-padding-x: .65em;
+      --bs-badge-padding-y: .35em;
+      display: inline-block;
+      padding: var(--bs-badge-padding-y) var(--bs-badge-padding-x);
+      font-size: .85rem;
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
+      vertical-align: baseline;
+      border-radius: 50rem;
+      background-color: #ffdcc9;
+      color: #683014;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+    .dark .timeline .badge { background-color: #542c1e; color: #ffdcc9; }
+    @media (max-width: 47.99rem) {
+      #linha-do-tempo { padding-block: 3rem; }
+      #titulo-tempo { margin-bottom: 1.5rem; }
+      .timeline li { padding-inline-start: 1.1rem; }
+    }
 .timeline p { margin:.3rem 0 0; max-width:58ch; line-height:1.6; }
 .timeline a { text-decoration:underline; text-decoration-color:#ff864e; text-underline-offset:.2em; }
 </style>
@@ -411,14 +432,14 @@ THE SOFTWARE.
   <div class="max-w-6xl mx-auto px-6 md:grid md:grid-cols-3 md:gap-12">
     <h2 id="titulo-tempo" class="font-display font-bold text-4xl md:text-5xl mb-10">Linha do tempo</h2>
     <ol class="timeline md:col-span-2">
-      <li><strong>Aos 6 anos</strong><p>Comecei a treinar karatê no Clube São João, em Jundiaí.</p></li>
-      <li><strong>Aos 7 anos</strong><p>Comecei a jogar futebol. Por um tempo, os campos e o tatame fizeram parte da minha rotina.</p></li>
-      <li><strong>2020</strong><p>Aos 12 anos, entrei para a <a href="karate.html">seleção brasileira de karatê</a>. Ia representar o Brasil na Bolívia, mas a pandemia cancelou o Sul-Americano.</p></li>
-      <li><strong>2021</strong><p>Encerrei meus treinos de karatê na faixa marrom, depois de conquistar o título brasileiro e três títulos paulistas.</p></li>
-      <li><strong>2022</strong><p><a href="futebol.html">Voltei a jogar futebol</a>. Hoje jogo no amador aqui em Jundiaí.</p></li>
-      <li><strong>Na escola</strong><p>Meu professor Caio Zanin trouxe a ideia de um tradutor de Libras. Juntos, começamos a desenvolver o <a href="sinalfy.html">SinalFy</a>.</p></li>
-      <li><strong>2026</strong><p>O SinalFy me rendeu uma bolsa integral para cursar Ciência da Computação no UniAnchieta.</p></li>
-      <li><strong>Outubro de 2026</strong><p>A convite do professor Elton Bordin, <a href="microsoft.html">visitei o Microsoft Innovation Hub</a> em São Paulo com colegas da faculdade.</p></li>
+      <li><strong class="badge">Aos 6 anos</strong><p>Comecei a treinar karatê no Clube São João, em Jundiaí.</p></li>
+      <li><strong class="badge">Aos 7 anos</strong><p>Comecei a jogar futebol. Por um tempo, os campos e o tatame fizeram parte da minha rotina.</p></li>
+      <li><strong class="badge">2020</strong><p>Aos 12 anos, entrei para a <a href="karate.html">seleção brasileira de karatê</a>. Ia representar o Brasil na Bolívia, mas a pandemia cancelou o Sul-Americano.</p></li>
+      <li><strong class="badge">2021</strong><p>Encerrei meus treinos de karatê na faixa marrom, depois de conquistar o título brasileiro e três títulos paulistas.</p></li>
+      <li><strong class="badge">2022</strong><p><a href="futebol.html">Voltei a jogar futebol</a>. Hoje jogo no amador aqui em Jundiaí.</p></li>
+      <li><strong class="badge">Na escola</strong><p>Meu professor Caio Zanin trouxe a ideia de um tradutor de Libras. Juntos, começamos a desenvolver o <a href="sinalfy.html">SinalFy</a>.</p></li>
+      <li><strong class="badge">2026</strong><p>O SinalFy me rendeu uma bolsa integral para cursar Ciência da Computação no UniAnchieta.</p></li>
+      <li><strong class="badge">Outubro de 2026</strong><p>A convite do professor Elton Bordin, <a href="microsoft.html">visitei o Microsoft Innovation Hub</a> em São Paulo com colegas da faculdade.</p></li>
     </ol>
   </div>
 </section>
