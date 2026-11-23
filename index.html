@@ -41,6 +41,7 @@
 
       <li><a href="#linha-do-tempo"    class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='linha-do-tempo'?'on !text-zinc-900 dark:!text-white':''">Linha do tempo</a></li>
       <li><a href="#stack"    class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='stack'?'on !text-zinc-900 dark:!text-white':''">Minha stack</a></li>
+            <li><a href="#opiniao"    @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Minha Opinião</a></li>
       <li><a href="#contact" class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='contact'?'on !text-zinc-900 dark:!text-white':''">Contato</a></li>
     </ul>
 
@@ -224,9 +225,7 @@
     </ul>
   </div>
 </section>
-<script src="js/stack-filter.js"></script>
 
-<!-- ═══ CONTACT ═══ -->
 <section id="opiniao" class="py-24 bg-zinc-50 dark:bg-zinc-900/40">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Minha opinião sobre as aulas</h2>
@@ -253,6 +252,9 @@
   </div>
 </section>
 
+<script src="js/stack-filter.js"></script>
+
+<!-- ═══ CONTACT ═══ -->
 <section id="contact" class="py-24">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="font-display font-bold text-4xl mb-5">Contato</h2>
@@ -264,11 +266,13 @@
   </div>
 </section>
 
+
+
 </main>
 
 <footer class="border-t border-zinc-100 dark:border-zinc-900">
   <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-    <p class="text-sm text-zinc-400">© <span id="yr"></span> Pedro Stella. Todos os direitos reservados. <br> Template de <a href="https://lbegey78.gumroad.com/" target="_blank" class="font-bold">Laurent Begey</a> • Distribu&iacute;do por <a href="https://themewagon.com/" target="_blank" class="font-bold">ThemeWagon</a></p>
+    <p class="text-sm text-zinc-400">© <span id="yr"></span> Pedro Stella. Todos os direitos reservados.</p>
     <nav aria-label="Contato no rodap&eacute;" class="flex flex-wrap justify-center gap-4 text-sm"><a class="hover:underline" href="https://wa.me/5511910711863">WhatsApp</a><a class="hover:underline" href="https://www.instagram.com/pedrostella.tech/">Instagram</a><a class="hover:underline" href="mailto:pedrostelladev@gmail.com">E-mail</a></nav>
   </div>
 </footer>

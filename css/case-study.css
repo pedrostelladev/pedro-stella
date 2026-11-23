@@ -50,7 +50,5 @@
     /* card hover */
     .card-h{transition:transform .28s cubic-bezier(.4,0,.2,1),border-color .18s;}
     .card-h:hover{transform:translateY(-4px);}
-
 .study-detail-title { font-size:1rem;margin:0 0 .5rem;color:inherit; }
-
 .study-detail-copy { margin:0;color:inherit; }
